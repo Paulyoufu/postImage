@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSharpActiveX1234测试</title>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function(){
+            $("button").click(function(){
+               // click_cap();
+              //  alert("aaaaaaaaaaaaa");
+              //  abc();
+                $.post("test.php",
+                        {
+                            photo1:""
+                        },
+                        function(data,status){
+                            alert("Data: " + data + "nStatus: " + status);
+                        });
+            });
+        })
+
+      //  function  abc(){ alert("11111111111111111");}
+        function click_cap() {
+            var varcap = document.getElementById("csharpActiveX1");
+            varcap.start();
+            varcap.cap();
+            varcap.stop();
+
+            document.getElementById("tx").value = "data:image/png;base64," + varcap.Strimagebase64;
+
+            var Img = new Image();
+            Img.height=230;
+            Img.width=230;
+            Img.src = "data:image/png;base64," + varcap.Strimagebase64;
+            Img.onload = function ()
+            {
+                document.body.appendChild(Img);
+            }
+        callback();
+        }
+    </script>
+
+</head>
+<body>
+
+<button>cap</button>
+<object id="csharpActiveX1" classid="clsid:41BFCA19-943B-40C3-9EA4-86FB24CA06A1" codebase="CSharpActiveX.CAB#version=1,0,1" style="display: none;"></object>
+<textarea  id="tx" cols="30" rows="10"></textarea>
+
+
+</body>
+</html>

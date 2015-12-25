@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSharpActiveX187774测试</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        // document.all.Uc.ReadOnly();
+    </script>
+
+</head>
+<body>
+
+<button >cap</button>
+<object id="csharpActiveX1" classid="clsid:41BFCA19-943B-40C3-9EA4-86FB24CA06A1" codebase="CSharpActiveX.CAB#version=1,0,1" style="display: none;"></object>
+<!-- <script type="text/javascript" language="javascript">
+    var activeX = document.getElementById("csharpActiveX1");
+    var st="hello world!";
+    alert(activeX.GetMacAddress(st));
+
+   //alert(activeX.GetStr(st));
+ </script>-->
+<textarea  id="tx" cols="30" rows="10"></textarea>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+
+        $("button").click(function(){
+            click_cap(ajax);
+
+        });
+    })
+
+        function ajax(){
+            $.post("testserve.php",
+                    {
+                        photo1: str
+                    },
+                    function(data,status){
+                        alert("Data: " + data + "nStatus: " + status);
+                    });
+
+    }
+
+    function click_cap(callback) {
+        var varcap = document.getElementById("csharpActiveX1");
+        varcap.start();
+        varcap.cap();
+        varcap.stop();
+
+        document.getElementById("tx").value = "data:image/png;base64," + varcap.Strimagebase64;
+        str = "data:image/png;base64," + varcap.Strimagebase64;
+
+        var Img = new Image();
+        Img.height=230;
+        Img.width=230;
+        Img.src = "data:image/png;base64," + varcap.Strimagebase64;
+        Img.onload = function ()
+        {
+            document.body.appendChild(Img);
+        }
+        callback();
+
+    }
+
+
+</script>
+
+</body>
+</html>
